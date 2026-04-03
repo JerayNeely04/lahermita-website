@@ -47,10 +47,8 @@ export default function Navbar() {
 
   // Dedicated Shop page
   const goShop = () => {
-    navigate("/shop");
-    setOpen(false);
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+  window.location.href = "https://la-hermita-cigar.myshopify.com/";
+};
 
   const menuId = "mobile-menu";
 

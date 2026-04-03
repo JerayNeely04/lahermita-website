@@ -11,26 +11,58 @@ export default function Shop() {
   const { addToCart } = useCart();
 
   const products = [
-    { id: 1, name: "Reserva Roja", img: redBlend, price: 18 },
-    { id: 2, name: "La Hermita Barber", img: brownBlend, price: 20 },
-    { id: 3, name: "La Hermita Oscuro", img: blackBlend, price: 22 },
-    { id: 4, name: "La Hermita Claro", img: whiteBlend, price: 19 },
+    {
+      id: 1,
+      name: "Robusto Connecticut",
+      size: "52 x 6",
+      img: redBlend,
+      variants: [
+        { label: "10 Count Box", count: 10, price: 149 },
+        { label: "20 Count Box", count: 20, price: 299 },
+      ],
+    },
+    {
+      id: 2,
+      name: "Torpedo Maduro",
+      size: "52 x 6",
+      img: brownBlend,
+      variants: [
+        { label: "10 Count Box", count: 10, price: 199 },
+        { label: "20 Count Box", count: 20, price: 309 },
+      ],
+    },
+    {
+      id: 3,
+      name: "Torpedo Maduro Double Wrapper",
+      size: "52 x 6",
+      img: blackBlend,
+      variants: [
+        { label: "10 Count Box", count: 10, price: 209 },
+        { label: "20 Count Box", count: 20, price: 349 },
+      ],
+    },
+    {
+      id: 4,
+      name: "Grand Toro Habano",
+      size: "52 x 6",
+      img: whiteBlend,
+      variants: [
+        { label: "10 Count Box", count: 10, price: 199 },
+        { label: "20 Count Box", count: 20, price: 349 },
+      ],
+    },
   ];
 
   return (
     <section
       className="min-h-screen bg-luxe-section text-cream py-24 relative overflow-hidden"
-      style={{
-        backgroundAttachment: "fixed",
-      }}
+      style={{ backgroundAttachment: "fixed" }}
     >
-      {/* Subtle glow vignette overlay */}
       <div
         aria-hidden
         className="absolute inset-0 -z-10 bg-[radial-gradient(1200px_700px_at_20%_8%,#5a3b2d_0%,#2a1815_45%,#120805_100%)] opacity-95"
       />
 
-      {/* Decorative texture pattern */}
       <div
         aria-hidden
         className="absolute inset-0 -z-5 opacity-[0.18]"
@@ -43,11 +75,10 @@ export default function Shop() {
         }}
       />
 
-      {/* Page content */}
       <div className="container-x text-center relative z-10">
         <h1 className="font-display text-5xl text-gold mb-6">Shop La Hermita</h1>
         <p className="text-cream/80 mb-12">
-          Hand-rolled cigars crafted with heritage and precision. Select your favorites below.
+          Hand-rolled cigars crafted with heritage and precision. Select your box below.
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -62,8 +93,9 @@ export default function Shop() {
                 alt={p.name}
                 className="w-full h-64 object-cover rounded-lg mb-4"
               />
+
               <h2 className="font-display text-xl text-gold mb-1">{p.name}</h2>
-              <p className="text-cream/70 mb-4">${p.price.toFixed(2)} each</p>
+              <p className="text-cream/70 mb-1">{p.size}</p>
 
               <AddToCart product={p} addToCart={addToCart} />
             </motion.div>
@@ -71,6 +103,7 @@ export default function Shop() {
         </div>
 
         <div className="divider my-16" />
+
         <Link to="/checkout" className="btn-solid sheen px-8 py-3 text-lg">
           Proceed to Checkout
         </Link>
@@ -80,10 +113,36 @@ export default function Shop() {
 }
 
 function AddToCart({ product, addToCart }) {
+  const [selectedVariantIndex, setSelectedVariantIndex] = useState(0);
   const [qty, setQty] = useState(1);
 
+  const selectedVariant = product.variants[selectedVariantIndex];
+
+  const cartItem = {
+    ...product,
+    variant: selectedVariant.label,
+    count: selectedVariant.count,
+    price: selectedVariant.price,
+  };
+
   return (
-    <div className="flex flex-col items-center gap-3">
+    <div className="flex flex-col items-center gap-3 mt-4">
+      <select
+        value={selectedVariantIndex}
+        onChange={(e) => setSelectedVariantIndex(Number(e.target.value))}
+        className="w-full rounded-lg border border-gold/30 bg-[#1d0f0c] text-cream px-3 py-2 focus:outline-none focus:ring-2 focus:ring-gold/40"
+      >
+        {product.variants.map((variant, index) => (
+          <option key={variant.label} value={index}>
+            {variant.label} — ${variant.price.toFixed(2)}
+          </option>
+        ))}
+      </select>
+
+      <p className="text-cream/80">
+        <span className="text-gold font-semibold">Price:</span> ${selectedVariant.price.toFixed(2)}
+      </p>
+
       <div className="flex items-center justify-center gap-3">
         <button
           onClick={() => setQty((q) => Math.max(1, q - 1))}
@@ -91,7 +150,9 @@ function AddToCart({ product, addToCart }) {
         >
           −
         </button>
+
         <span className="text-lg">{qty}</span>
+
         <button
           onClick={() => setQty((q) => q + 1)}
           className="px-3 py-1 border border-gold/30 rounded text-gold hover:bg-gold/10"
@@ -99,8 +160,9 @@ function AddToCart({ product, addToCart }) {
           +
         </button>
       </div>
+
       <button
-        onClick={() => addToCart(product, qty)}
+        onClick={() => addToCart(cartItem, qty)}
         className="btn-solid sheen w-full"
       >
         Add to Cart
