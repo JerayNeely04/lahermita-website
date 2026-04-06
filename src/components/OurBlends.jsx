@@ -1,4 +1,4 @@
-import redBlend   from "../assets/img/blend-red.webp";
+import redBlend from "../assets/img/blend-red.webp";
 import brownBlend from "../assets/img/blend-brown.webp";
 import blackBlend from "../assets/img/blend-black.webp";
 import whiteBlend from "../assets/img/blend-white.webp";
@@ -41,19 +41,20 @@ export default function OurBlends() {
       className="relative text-cream overflow-hidden border-t border-gold/20 py-24"
       aria-labelledby="our-blends-heading"
     >
-      {/* Background to match hero */}
       <div
         aria-hidden
         className="absolute inset-0 -z-10 bg-[radial-gradient(1200px_800px_at_25%_10%,#3d221a_0%,#2a1712_40%,#1a0e0a_100%)]"
       />
       <div className="absolute inset-0 bg-[rgba(0,0,0,0.25)] -z-[5]" />
 
-      {/* Header */}
       <div className="container-x text-center">
         <p className="uppercase tracking-[0.18em] text-xs text-cream/60 mb-2">
           Limited Releases • Hand-Rolled in Santiago
         </p>
-        <h2 id="our-blends-heading" className="font-display text-4xl md:text-5xl text-gold mb-4">
+        <h2
+          id="our-blends-heading"
+          className="font-display text-4xl md:text-5xl text-gold mb-4"
+        >
           Our Blends
         </h2>
         <p className="max-w-xl mx-auto text-cream/80 leading-relaxed">
@@ -61,7 +62,6 @@ export default function OurBlends() {
         </p>
       </div>
 
-      {/* Grid */}
       <div className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-6xl mx-auto px-6">
         {blends.map((blend) => (
           <div
@@ -84,7 +84,15 @@ export default function OurBlends() {
         ))}
       </div>
 
-      {/* Divider */}
+      <div className="mt-12 flex justify-center">
+        <a
+          href="https://la-hermita-cigar.myshopify.com/collections/all"
+          className="btn-solid sheen px-8 py-3 text-lg"
+        >
+          Shop the Collection
+        </a>
+      </div>
+
       <div className="hr-line mt-16 opacity-40" />
     </section>
   );
