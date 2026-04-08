@@ -25,7 +25,7 @@ Message:
 ${message}
     `.trim();
 
-    const to = "hello@lahermitacigars.com"; // TODO: set real inbox
+    const to = "lindonp.business@gmail.com"; // TODO: set real inbox
     window.location.href =
       `mailto:${to}?subject=${encodeURIComponent("Website Contact — La Hermita Cigars")}` +
       `&body=${encodeURIComponent(body)}`;
