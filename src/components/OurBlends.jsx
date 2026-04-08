@@ -15,7 +15,7 @@ export default function OurBlends() {
     {
       id: 2,
       img: brownBlend,
-      name: "Torpedo Maduro Double Capa",
+      name: "Torpedo Maduro Doble Capa",
       note: "Unique barber-pole wrapper for balanced sweet and spicy draw.",
       alt: "Barber pole wrapper cigars arranged in box",
     },
