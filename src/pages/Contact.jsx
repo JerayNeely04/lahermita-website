@@ -25,7 +25,7 @@ Message:
 ${message}
     `.trim();
 
-    const to = "hello@lahermitacigars.com"; // TODO: set real inbox
+    const to = "lindonp.business@gmail.com"; 
     window.location.href =
       `mailto:${to}?subject=${encodeURIComponent("Website Contact — La Hermita Cigars")}` +
       `&body=${encodeURIComponent(body)}`;
@@ -206,8 +206,8 @@ ${message}
             <ul className="mt-4 space-y-3 text-cream/85 relative">
               <li>
                 <span className="block text-cream/60 text-xs">Email</span>
-                <a className="hover:underline" href="mailto:hello@lahermitacigars.com">
-                  hello@lahermitacigars.com
+                <a className="hover:underline" href="mailto:lindonp.business@gmail.com">
+                  lindonp.business@gmail.com
                 </a>
               </li>
               <li>
@@ -271,7 +271,7 @@ ${message}
                 e.preventDefault();
                 const email = new FormData(e.currentTarget).get("nlemail") || "";
                 window.location.href =
-                  `mailto:hello@lahermitacigars.com?subject=${encodeURIComponent(
+                  `mailto:lindonp.business@gmail.com?subject=${encodeURIComponent(
                     "Newsletter Signup"
                   )}&body=${encodeURIComponent(`Please add ${email} to the newsletter.`)}`;
               }}
